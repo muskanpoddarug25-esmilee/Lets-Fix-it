@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "Report": {
+      "title": "Report",
+      "description": "Hyperlocal community issue report in India",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Title of the issue" },
+        "description": { "type": "string", "description": "Citizen description of the issue" },
+        "category": { "type": "string", "description": "AI-categorized category of the issue" },
+        "status": { "type": "string", "description": "Tracking state: Reported, In Progress, Resolved" },
+        "imageUrl": { "type": "string", "description": "Image attachment base64 or placeholder url" },
+        "upvotes": { "type": "integer", "description": "Number of upvotes from community" },
+        "createdBy": { "type": "string", "description": "UID of user who reported this" },
+        "creatorEmail": { "type": "string", "description": "Email of the reporter" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "description", "status", "createdBy"]
+    },
+    "User": {
+      "title": "User",
+      "description": "User gamification, security and profile data",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "city": { "type": "string" },
+        "userType": { "type": "string" },
+        "role": { "type": "string" },
+        "salt": { "type": "string" },
+        "passwordHash": { "type": "string" },
+        "points": { "type": "integer" },
+        "badges": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "points"]
+    }
+  },
+  "firestore": {
+    "reports/{reportId}": {
+      "schema": "Report",
+      "description": "Collection of all community-submitted reports"
+    },
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles containing scores and badges"
+    }
+  }
+}

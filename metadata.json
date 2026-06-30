@@ -1,0 +1,6 @@
+{
+  "name": "LetsFixIt",
+  "description": "A hyperlocal community issue reporting platform for India, featuring real-time tracking, AI-powered deduplication, and damage cost estimates.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

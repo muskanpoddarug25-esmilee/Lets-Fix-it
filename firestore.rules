@@ -1,0 +1,30 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reports collection
+    match /reports/{reportId} {
+      allow read: if true; // Public can see reported issues on the map
+      allow create: if request.auth != null; // Registered citizens can report
+      allow update: if request.auth != null; // Citizens can upvote, admins can change status
+      allow delete: if request.auth != null && resource.data.createdBy == request.auth.uid;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if true; // Public can see user leaderboard
+      allow create: if true; // Allow new user signup (even if email provider is disabled in Firebase console)
+      allow update: if request.auth != null && request.auth.uid == userId; // User can update their own profile
+      allow delete: if false;
+    }
+
+    // Notifications collection
+    match /notifications/{notificationId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;700&family=Geist:wght@300;400;600&family=Geist+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-oswald: "Oswald", sans-serif;
+}
+
+:root {
+  --text-primary: #111111;
+  --text-secondary: #444444;
+  --text-muted: #666666;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --input-bg: #f9f9f9;
+  --input-text: #111111;
+  --card-text: #111111;
+  --card-subtext: #444444;
+}
+
+[data-theme="dark"], .dark, html.dark {
+  --text-primary: #f0f0f0;
+  --text-secondary: #cccccc;
+  --text-muted: #aaaaaa;
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --input-bg: #2a2a2a;
+  --input-text: #f0f0f0;
+  --card-text: #f0f0f0;
+  --card-subtext: #cccccc;
+}
+
+/* Glassmorphism blur effects for dark mode */
+[data-theme="dark"] [style*="var(--card-bg)"], .dark [style*="var(--card-bg)"],
+[data-theme="dark"] .card-bg-var, .dark .card-bg-var {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Subtle premium Indian geometric pattern in saffron, green, and blue */
+.indian-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='none' stroke='%23ff8c00' stroke-width='1' stroke-opacity='0.03'/%3E%3Cpath d='M30 10l20 20-20 20-20-20z' fill='none' stroke='%23138808' stroke-width='1' stroke-opacity='0.02'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%23000080' stroke-width='1' stroke-opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Global styling enforcement using CSS variables */
+body, html, #root {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Text tags default to thematic colors */
+p {
+  color: var(--text-secondary);
+}
+
+span, label, li, a, em, strong {
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+}
+
+h3.force-black {
+  color: #100f0f !important;
+}
+
+/* Step 3 exceptions so force-black is never overridden */
+.dark-bg h3.force-black {
+  color: #100f0f !important;
+}
+
+/* Input elements default to thematic colors */
+input, select, textarea {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-color: var(--card-border) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted) !important;
+  opacity: 0.80 !important;
+}
+
+/* Force colors on nested tags inside specific elements */
+.dark-bg p, .dark-bg span, .dark-bg label, .dark-bg h1, .dark-bg h2, .dark-bg h3, .dark-bg h4, .dark-bg h5, .dark-bg h6, .dark-bg li, .dark-bg a {
+  color: var(--text-primary) !important;
+}
+
+/* Custom class utility styling */
+.text-primary-var {
+  color: var(--text-primary) !important;
+}
+.text-secondary-var {
+  color: var(--text-secondary) !important;
+}
+.text-muted-var {
+  color: var(--text-muted) !important;
+}
+.bg-primary-var {
+  background-color: var(--bg-primary) !important;
+}
+.bg-secondary-var {
+  background-color: var(--bg-secondary) !important;
+}
+.card-bg-var {
+  background-color: var(--card-bg) !important;
+}
+.card-border-var {
+  border-color: var(--card-border) !important;
+}
+
+/* Section 1: Logo display fixes */
+img[alt*="logo"], img[alt*="Logo"], img[src*="LetsFixIt"], .logo-img {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.logo-container, .logo-wrapper {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
