@@ -10,7 +10,7 @@ import bcrypt from "bcrypt";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 // Set up JSON body parsing with higher limits for base64 image uploads
 app.use(express.json({ limit: "10mb" }));
@@ -450,14 +450,7 @@ app.get(["/LetssFixIt", "/LetsFixIt.jpeg", "/LetsFixIt.png", "/LetsFixIt-removeb
 // --- VITE AND STATIC SERVING ---
 
 async function startServer() {
-  // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
+  if (process.env.NODE_ENV === "production") {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
     app.get("*", (req: Request, res: Response) => {

@@ -1006,13 +1006,6 @@ export default function AuthScreen({ onAuthSuccess, isDarkMode = true, toggleDar
         userType: "Government Official"
       };
       
-      // Let's also sign in in the background with auth if possible, but don't let it block success
-      try {
-        await signInWithEmailAndPassword(auth, cleanEmail, adminPassword);
-      } catch (authErr) {
-        console.warn("[AuthScreen] Dynamic Auth background sign-in bypassed on offline mock", authErr);
-      }
-      
       onAuthSuccess(adminProfile);
       setLoading(false);
       return;

@@ -17,14 +17,14 @@ service cloud.firestore {
     // Users collection
     match /users/{userId} {
       allow read: if true; // Public can see user leaderboard
-      allow create: if true; // Allow new user signup (even if email provider is disabled in Firebase console)
-      allow update: if request.auth != null && request.auth.uid == userId; // User can update their own profile
+      allow create, update: if request.auth != null && request.auth.uid == userId; // User can update their own profile
       allow delete: if false;
     }
 
     // Notifications collection
     match /notifications/{notificationId} {
-      allow read, write: if true;
+      allow create: if request.auth != null;
+      allow read, update, delete: if request.auth != null && resource.data.userId == request.auth.uid;
     }
   }
 }

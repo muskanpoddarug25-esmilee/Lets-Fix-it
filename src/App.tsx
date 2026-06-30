@@ -602,7 +602,7 @@ export default function App() {
 
   // Simulated Login State Managers
   const [isSimulatedLoggedIn, setIsSimulatedLoggedIn] = useState(false);
-  const [showAuthHelpModal, setShowAuthHelpModal] = useState(true);
+  const [showAuthHelpModal, setShowAuthHelpModal] = useState(false);
   const [authErrorMessage, setAuthErrorMessage] = useState("");
 
   // Authenticate anonymously or load from localStorage
